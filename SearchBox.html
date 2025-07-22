@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Live Search Filter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        #searchBox {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 8px;
+            border-bottom: 1px solid #ccc;
+        }
+        li.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Search Presets</h2>
+<input type="text" id="searchBox" placeholder="Type to search...">
+
+<ul id="presetList">
+    <li>India Filing</li>
+    <li>US Provisional</li>
+    <li>PCT Phase</li>
+    <li>Europe Validation</li>
+    <li>Canada Direct Filing</li>
+    <li>Japan National Phase</li>
+    <li>Australia Patent</li>
+</ul>
+
+<script>
+    const searchBox = document.getElementById("searchBox");
+    const listItems = document.querySelectorAll("#presetList li");
+
+    searchBox.addEventListener("input", function () {
+        const query = this.value.toLowerCase();
+        listItems.forEach(item => {
+            const text = item.textContent.toLowerCase();
+            item.classList.toggle("hidden", !text.includes(query));
+        });
+    });
+</script>
+
+</body>
+</html>
